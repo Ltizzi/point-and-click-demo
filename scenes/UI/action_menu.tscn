@@ -1,0 +1,72 @@
+[gd_scene load_steps=6 format=3 uid="uid://b44162keicw8x"]
+
+[ext_resource type="Script" path="res://ActionMenu.gd" id="1_5f63a"]
+[ext_resource type="Texture2D" uid="uid://w7c2fud2gtef" path="res://assets/images/UI/actions/spr_lookAt_0.png" id="2_7cv8f"]
+[ext_resource type="Texture2D" uid="uid://bjacfegvsx7fe" path="res://assets/images/UI/actions/spr_use_0.png" id="3_xpajl"]
+[ext_resource type="Texture2D" uid="uid://66fj45qnxlnk" path="res://assets/images/UI/actions/spr_talk_0.png" id="4_a6jkd"]
+[ext_resource type="Texture2D" uid="uid://ca1pagd2xn62h" path="res://assets/images/UI/actions/spr_pick_0.png" id="5_im8nd"]
+
+[node name="ActionMenu" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.595, 1.595)
+script = ExtResource("1_5f63a")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 70.0
+offset_bottom = 50.0
+
+[node name="LookAt" type="TextureButton" parent="Panel"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 5.0
+offset_top = 22.0
+offset_right = 45.0
+offset_bottom = 62.0
+scale = Vector2(0.763158, 0.666667)
+texture_normal = ExtResource("2_7cv8f")
+stretch_mode = 5
+
+[node name="Use" type="TextureButton" parent="Panel"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 40.0
+offset_top = 2.0
+offset_right = 80.0
+offset_bottom = 42.0
+scale = Vector2(0.626437, 0.581699)
+texture_normal = ExtResource("3_xpajl")
+stretch_mode = 5
+
+[node name="Talk" type="TextureButton" parent="Panel"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 4.0
+offset_top = -2.0
+offset_right = 44.0
+offset_bottom = 38.0
+scale = Vector2(0.734796, 0.741627)
+texture_normal = ExtResource("4_a6jkd")
+stretch_mode = 5
+
+[node name="Pick" type="TextureButton" parent="Panel"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 45.0
+offset_top = 25.0
+offset_right = 85.0
+offset_bottom = 65.0
+scale = Vector2(0.520389, 0.516923)
+texture_normal = ExtResource("5_im8nd")
+stretch_mode = 5
+
+[connection signal="pressed" from="Panel/LookAt" to="." method="_on_look_at_pressed"]
+[connection signal="pressed" from="Panel/Use" to="." method="_on_use_pressed"]
+[connection signal="pressed" from="Panel/Talk" to="." method="_on_talk_pressed"]
+[connection signal="pressed" from="Panel/Pick" to="." method="_on_pick_pressed"]

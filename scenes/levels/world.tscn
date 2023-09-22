@@ -1,0 +1,102 @@
+[gd_scene load_steps=11 format=3 uid="uid://bxhlvffeydnmr"]
+
+[ext_resource type="Script" path="res://scenes/levels/world.gd" id="1_hrvff"]
+[ext_resource type="PackedScene" uid="uid://df0bgi3t6ulq7" path="res://scenes/char/character.tscn" id="2_3abh4"]
+[ext_resource type="Texture2D" uid="uid://jeb4vm5ln02q" path="res://assets/images/bg/bg_iintro.png" id="2_rg2nt"]
+[ext_resource type="PackedScene" uid="uid://t628ctc88cvo" path="res://scenes/objects/old_clock.tscn" id="3_1s2h8"]
+[ext_resource type="PackedScene" uid="uid://b4l7ncn65dutk" path="res://scenes/objects/monitor_screen.tscn" id="4_274h4"]
+[ext_resource type="PackedScene" uid="uid://b44162keicw8x" path="res://scenes/UI/action_menu.tscn" id="6_d0x6h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0ajtg"]
+size = Vector2(15.6869, 342)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yq8kt"]
+size = Vector2(1.91795, 9.46132)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yqy41"]
+size = Vector2(0.00601888, 237.24)
+
+[sub_resource type="LabelSettings" id="LabelSettings_g1ubl"]
+font_size = 18
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_hrvff")
+
+[node name="Level" type="Node2D" parent="."]
+position = Vector2(-3.05176e-05, -3.05176e-05)
+
+[node name="Background" type="Sprite2D" parent="Level"]
+texture_filter = 1
+position = Vector2(400, 299)
+texture = ExtResource("2_rg2nt")
+
+[node name="CollisionLimits" type="StaticBody2D" parent="Level"]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/CollisionLimits"]
+position = Vector2(623, 420)
+shape = SubResource("RectangleShape2D_0ajtg")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Level/CollisionLimits"]
+position = Vector2(353.028, 317)
+rotation = -3.14159
+scale = Vector2(33.7896, 0.130939)
+shape = SubResource("RectangleShape2D_0ajtg")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Level/CollisionLimits"]
+position = Vector2(320, 593)
+rotation = -3.14159
+scale = Vector2(332.288, -0.659418)
+shape = SubResource("RectangleShape2D_yq8kt")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Level/CollisionLimits"]
+position = Vector2(3.05176e-05, 509.22)
+rotation = -3.14159
+scale = Vector2(332.288, -0.659418)
+shape = SubResource("RectangleShape2D_yqy41")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Level/CollisionLimits"]
+polygon = PackedVector2Array(2.00003, 428, 32, 398, 31, 368, 86, 327, 88, 336, 87, 299, 1.00003, 350)
+
+[node name="OldClock" parent="Level" instance=ExtResource("3_1s2h8")]
+position = Vector2(48, 174)
+
+[node name="MonitorScreen" parent="Level" instance=ExtResource("4_274h4")]
+position = Vector2(448, 187)
+scale = Vector2(0.295, 0.275)
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="Level"]
+color = Color(0, 0, 0, 1)
+energy = 1.12
+blend_mode = 2
+range_item_cull_mask = 512
+
+[node name="Character" parent="." instance=ExtResource("2_3abh4")]
+position = Vector2(329, 323)
+scale = Vector2(0.81, 0.81)
+disable_mode = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ActionMenu" parent="CanvasLayer" instance=ExtResource("6_d0x6h")]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+visibility_layer = 512
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -600.0
+offset_bottom = -560.0
+grow_horizontal = 2
+grow_vertical = 2
+label_settings = SubResource("LabelSettings_g1ubl")
+vertical_alignment = 1
+
+[connection signal="clicked_and_close_action_menu" from="." to="Character" method="_on_world_clicked_and_close_action_menu"]
+[connection signal="popup_menu" from="Character" to="." method="_on_character_popup_menu"]
+[connection signal="popup_menu_close" from="Character" to="." method="_on_character_popup_menu_close"]
+[connection signal="clicked_action" from="CanvasLayer/ActionMenu" to="." method="_on_action_menu_clicked_action"]
+[connection signal="mouse_entered" from="CanvasLayer/ActionMenu" to="." method="_on_action_menu_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/ActionMenu" to="." method="_on_action_menu_mouse_exited"]
