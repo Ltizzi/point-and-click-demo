@@ -25,8 +25,8 @@ func _process(_delta):
 	old_position = global_position
 	
 	#Actualiza posicion de texto
-	
-	$".."/CanvasLayer/Label.position = Vector2($Marker2D.global_position.x - 100, $Marker2D.global_position.y )
+	#	$".."/CanvasLayer/Label.position = Vector2($Marker2D.global_position.x - 100, $Marker2D.global_position.y )	
+	$".."/CanvasLayer/Label.position = $Marker2D.global_position
 
 	var mouse_clicked = Input.is_action_just_released("left-click")
 	var right_click = Input.is_action_just_pressed("right-click")

@@ -22,6 +22,7 @@ outline_size = 10
 outline_color = Color(0, 0, 0, 1)
 
 [node name="World" type="Node2D"]
+position = Vector2(-1, -4)
 script = ExtResource("1_hrvff")
 
 [node name="Level" type="Node2D" parent="."]
@@ -74,6 +75,7 @@ blend_mode = 2
 range_item_cull_mask = 512
 
 [node name="Character" parent="." instance=ExtResource("2_3abh4")]
+z_index = 1
 position = Vector2(329, 323)
 scale = Vector2(0.81, 0.81)
 disable_mode = 2
@@ -81,6 +83,9 @@ disable_mode = 2
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="ActionMenu" parent="CanvasLayer" instance=ExtResource("6_d0x6h")]
+scale = Vector2(1.65, 1.65)
+size_flags_horizontal = 6
+size_flags_vertical = 6
 
 [node name="Label" type="Label" parent="CanvasLayer"]
 visibility_layer = 512
@@ -93,6 +98,10 @@ grow_horizontal = 2
 grow_vertical = 2
 label_settings = SubResource("LabelSettings_g1ubl")
 vertical_alignment = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(401, 299)
+scale = Vector2(600, 600)
 
 [connection signal="clicked_and_close_action_menu" from="." to="Character" method="_on_world_clicked_and_close_action_menu"]
 [connection signal="popup_menu" from="Character" to="." method="_on_character_popup_menu"]

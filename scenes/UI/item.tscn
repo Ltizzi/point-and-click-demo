@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://emg4welpr7lp"]
+
+[ext_resource type="Texture2D" uid="uid://ca1pagd2xn62h" path="res://assets/images/UI/actions/spr_pick_0.png" id="1_f04us"]
+
+[node name="Item" type="Control"]
+layout_direction = 2
+layout_mode = 3
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 2
+offset_right = 14.0
+offset_bottom = 13.0
+
+[node name="TextureButton" type="TextureButton" parent="PanelContainer"]
+texture_filter = 1
+layout_mode = 2
+texture_normal = ExtResource("1_f04us")
+ignore_texture_size = true
+stretch_mode = 0

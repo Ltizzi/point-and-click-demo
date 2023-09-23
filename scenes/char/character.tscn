@@ -105,6 +105,14 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y172v"]
 size = Vector2(65, 12)
 
+[sub_resource type="LabelSettings" id="LabelSettings_o08ot"]
+font_size = 24
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_k1sl5"]
+polygon = PackedVector2Array(-14.5455, -147.879, -25.4545, -129.697, -23.0303, -106.667, -15.7576, -89.697, -4.84848, -83.6364, -8.48485, 155.152, 4.84848, 156.364, 1.21212, -83.6364, 13.3333, -89.697, 21.8182, -99.3939, 25.4545, -112.727, 27.8788, -129.697, 18.1818, -143.03, 0, -150.303)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_kv7ft"]
 animations = [{
 "frames": [{
@@ -425,14 +433,6 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="LabelSettings" id="LabelSettings_o08ot"]
-font_size = 24
-outline_size = 10
-outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_k1sl5"]
-polygon = PackedVector2Array(-14.5455, -147.879, -25.4545, -129.697, -23.0303, -106.667, -15.7576, -89.697, -4.84848, -83.6364, -8.48485, 155.152, 4.84848, 156.364, 1.21212, -83.6364, 13.3333, -89.697, 21.8182, -99.3939, 25.4545, -112.727, 27.8788, -129.697, 18.1818, -143.03, 0, -150.303)
-
 [node name="Character" type="CharacterBody2D"]
 scale = Vector2(0.825, 0.825)
 collision_mask = 14
@@ -444,12 +444,6 @@ anim_idle_speed = 0.5
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2.5, 154)
 shape = SubResource("RectangleShape2D_y172v")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-texture_filter = 1
-sprite_frames = SubResource("SpriteFrames_kv7ft")
-animation = &"idle"
-autoplay = "idle"
 
 [node name="Label" type="Label" parent="."]
 visibility_layer = 512
@@ -476,8 +470,14 @@ texture = ExtResource("101_whjy7")
 texture_scale = 0.93
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+z_index = 1
 occluder = SubResource("OccluderPolygon2D_k1sl5")
-occluder_light_mask = 7
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_kv7ft")
+animation = &"idle"
+autoplay = "idle"
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(-1.2121, -218.182)

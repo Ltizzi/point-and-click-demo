@@ -19,10 +19,19 @@ config/icon="res://icon.svg"
 
 Globals="*res://scripts/Globals.gd"
 
+[debug]
+
+settings/stdout/print_fps=true
+settings/stdout/print_gpu_profile=true
+
 [display]
 
 window/size/viewport_width=800
 window/size/viewport_height=600
+window/size/mode=4
+window/size/initial_position_type=0
+window/stretch/mode="viewport"
+window/stretch/aspect="keep_height"
 mouse_cursor/custom_image="res://assets/images/cursor/spr_mouse_0.png"
 mouse_cursor/custom_image_hotspot=Vector2(15, 15)
 
@@ -49,3 +58,8 @@ right-click={
 [rendering]
 
 renderer/rendering_method="mobile"
+textures/size/mode=2
+textures/stdout/print_gpu_profile=false
+textures/stdout/print_fps=false
+textures/size/extend_to_title=true
+textures/size/initial_position_type=0
