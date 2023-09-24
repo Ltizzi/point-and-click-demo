@@ -1,0 +1,101 @@
+[gd_scene load_steps=5 format=3 uid="uid://da8fx6gkc4e8c"]
+
+[ext_resource type="Script" path="res://Inventory/inventario.gd" id="1_s6dnc"]
+[ext_resource type="Texture2D" uid="uid://bixuwnq4d1bjn" path="res://assets/images/textures/OldLeather_N.jpg" id="2_h48k7"]
+[ext_resource type="PackedScene" uid="uid://emg4welpr7lp" path="res://scenes/UI/item.tscn" id="3_ji66g"]
+[ext_resource type="Texture2D" uid="uid://w7pkrliaacob" path="res://assets/images/UI/ui_close_btn.png" id="4_qykhs"]
+
+[node name="Inventario" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_s6dnc")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.501961, 0.298039, 0.156863, 1)
+custom_minimum_size = Vector2(85, 65)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_h48k7")
+expand_mode = 1
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 64.0
+offset_bottom = 49.0
+theme_override_constants/h_separation = 15
+theme_override_constants/v_separation = 15
+columns = 5
+
+[node name="Item" parent="GridContainer" instance=ExtResource("3_ji66g")]
+layout_mode = 2
+
+[node name="Item2" parent="GridContainer" instance=ExtResource("3_ji66g")]
+layout_mode = 2
+
+[node name="Item3" parent="GridContainer" instance=ExtResource("3_ji66g")]
+layout_mode = 2
+
+[node name="Item4" parent="GridContainer" instance=ExtResource("3_ji66g")]
+layout_mode = 2
+
+[node name="Item5" parent="GridContainer" instance=ExtResource("3_ji66g")]
+layout_mode = 2
+
+[node name="Item6" parent="GridContainer" instance=ExtResource("3_ji66g")]
+layout_mode = 2
+
+[node name="Item7" parent="GridContainer" instance=ExtResource("3_ji66g")]
+layout_mode = 2
+
+[node name="Item8" parent="GridContainer" instance=ExtResource("3_ji66g")]
+layout_mode = 2
+
+[node name="Item9" parent="GridContainer" instance=ExtResource("3_ji66g")]
+layout_mode = 2
+
+[node name="Item10" parent="GridContainer" instance=ExtResource("3_ji66g")]
+layout_mode = 2
+
+[node name="Item11" parent="GridContainer" instance=ExtResource("3_ji66g")]
+layout_mode = 2
+
+[node name="Item12" parent="GridContainer" instance=ExtResource("3_ji66g")]
+layout_mode = 2
+
+[node name="Item13" parent="GridContainer" instance=ExtResource("3_ji66g")]
+layout_mode = 2
+
+[node name="Item14" parent="GridContainer" instance=ExtResource("3_ji66g")]
+layout_mode = 2
+
+[node name="Item15" parent="GridContainer" instance=ExtResource("3_ji66g")]
+layout_mode = 2
+
+[node name="Item16" parent="GridContainer" instance=ExtResource("3_ji66g")]
+layout_mode = 2
+
+[node name="Item17" parent="GridContainer" instance=ExtResource("3_ji66g")]
+layout_mode = 2
+
+[node name="Item18" parent="GridContainer" instance=ExtResource("3_ji66g")]
+layout_mode = 2
+
+[node name="Item19" parent="GridContainer" instance=ExtResource("3_ji66g")]
+layout_mode = 2
+
+[node name="Item20" parent="GridContainer" instance=ExtResource("3_ji66g")]
+layout_mode = 2
+
+[node name="TextureButton" type="TextureButton" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 79.0
+offset_right = 95.0
+offset_bottom = 16.0
+scale = Vector2(0.365, 0.365)
+texture_normal = ExtResource("4_qykhs")
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]

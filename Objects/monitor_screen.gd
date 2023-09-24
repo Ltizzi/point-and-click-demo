@@ -19,6 +19,33 @@ var getActionStrings: Dictionary = {
 	"pick": "Necesitaría bolsillos más amplios."
 }
 
+var changed_radius = false
+var timer_running = false
+var colores = [Color(0.937, 0.282, 0.98), Color(0.394, 0.65, 0.879), Color(0.676, 0.819, 0.955), Color(0.394, 0.65, 0.879)]
+
+func _process(_delta):
+	if not timer_running:
+		timer()		
+	if changed_radius:
+		changed_radius = false
+		var old_scale = $PointLight2D.texture_scale
+		var old_intensity = $PointLight2D.energy
+		$PointLight2D.texture_scale = randf_range(2.0, 5.4)
+		await get_tree().create_timer(randf_range(0.12, 0.5)).timeout
+		$PointLight2D.color = colores[randi_range(0, colores.size() -1)]
+		await get_tree().create_timer(randf_range(0.15, 0.55)).timeout
+		$PointLight2D.energy = randf_range(1.2, 5.0)
+		#await get_tree().create_timer(randf_range(0.9,5.5)).timeout
+		$PointLight2D.texture_scale = old_scale
+		$PointLight2D.energy = old_intensity
+	
+func timer():
+	timer_running = true
+	await get_tree().create_timer(randf_range(0.2, 1.272)).timeout
+	timer_running = false
+	changed_radius = true
+	
+
 func look():
 	if not isPlayingMusic:
 		var index = getActionStrings["look"]["before_use"].size() - 1

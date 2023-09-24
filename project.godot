@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Point And Click"
-run/main_scene="res://scenes/levels/world.tscn"
+run/main_scene="res://Levels/world.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
 config/icon="res://icon.svg"
 
@@ -19,16 +19,10 @@ config/icon="res://icon.svg"
 
 Globals="*res://scripts/Globals.gd"
 
-[debug]
-
-settings/stdout/print_fps=true
-settings/stdout/print_gpu_profile=true
-
 [display]
 
 window/size/viewport_width=800
 window/size/viewport_height=600
-window/size/mode=4
 window/size/initial_position_type=0
 window/stretch/mode="viewport"
 window/stretch/aspect="keep_height"
@@ -47,9 +41,17 @@ right-click={
 "events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":2,"canceled":false,"pressed":false,"double_click":false,"script":null)
 ]
 }
+inventario={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194306,"key_label":0,"unicode":0,"echo":false,"script":null)
+]
+}
 
 [layer_names]
 
+2d_render/layer_1="Player"
+2d_render/layer_2="World/Objects"
+2d_render/layer_3="Light Objects"
 2d_physics/layer_1="char"
 2d_physics/layer_2="npc"
 2d_physics/layer_3="obj"

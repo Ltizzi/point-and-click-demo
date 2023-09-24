@@ -21,13 +21,10 @@ func _on_texture_button_mouse_entered():
 	Globals.is_mouse_over_interactive_obj = true
 	Globals.interactive_obj = self
 	
-
-
 func _on_texture_button_mouse_exited():
 	Globals.is_mouse_over_interactive_obj = false
 #	if not Globals.mouse_over_gui:
 #		Globals.interactive_obj = null
-
 
 func _on_texture_button_pressed():
 	Globals.interactive_obj = self

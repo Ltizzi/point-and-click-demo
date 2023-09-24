@@ -33,17 +33,17 @@ func _process(_delta):
 	var mouse_clicked = Input.is_action_just_released("left-click")
 	var right_click = Input.is_action_just_pressed("right-click")
 	
-#	if mouse_clicked or right_click:
-#		click_count += 1
-#		print("=====================================")
-#		print("Click counter: ", click_count)
-#		print("=====================================")
-#		print(" ")
-#		print("pop up open: ", Globals.action_menu_open)
-#		print("clicked with action open: ", Globals.clicked_with_action_menu_open)
-#		print("mouse over gui: ", Globals.mouse_over_gui)
-#		print(" ")
-#		print("=====================================")
+	if mouse_clicked or right_click:
+		click_count += 1
+		print("=====================================")
+		print("Click counter: ", click_count)
+		print("=====================================")
+		print(" ")
+		print("pop up open: ", Globals.action_menu_open)
+		print("clicked with action open: ", Globals.clicked_with_action_menu_open)
+		print("mouse over gui: ", Globals.mouse_over_gui)
+		print(" ")
+		print("=====================================")
 
 	
 	if right_click and Globals.interactive_obj:
