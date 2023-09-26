@@ -91,6 +91,7 @@ light_mask = 1
 position = Vector2(442, 346)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
 
 [node name="ActionMenu" parent="CanvasLayer" instance=ExtResource("6_mx2he")]
 
@@ -99,11 +100,10 @@ visibility_layer = 512
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -600.0
-offset_bottom = -560.0
+offset_right = -799.0
+offset_bottom = -574.0
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset = Vector2(100, 16)
 label_settings = SubResource("LabelSettings_g1ubl")
 horizontal_alignment = 1
 vertical_alignment = 1

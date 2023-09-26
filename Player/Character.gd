@@ -4,16 +4,19 @@ var direction:Vector2
 var speed = 300
 
 @export var inventory: Inventory
+@export var anim_idle_speed: float
 
 var old_position: Vector2
 var moving: bool
+var moving_to_object: bool
+var next_to_object: bool
+var obj_position: Vector2
 
 var click_count: int
 
 signal popup_menu
 signal popup_menu_close
 
-@export var anim_idle_speed: float
 
 var action_type: String
 
@@ -67,29 +70,40 @@ func _process(_delta):
 		$AnimatedSprite2D.stop()
 		direction = get_global_mouse_position()
 		velocity = global_position.direction_to(direction) * speed
-		var axis_x_delta = abs(direction.x - global_position.x) > 200
-		if direction.y < global_position.y and not axis_x_delta:
-			$AnimatedSprite2D.play("back_walk")
-		if direction.y > global_position.y and not axis_x_delta:
-			$AnimatedSprite2D.play("front_walk")
-		if axis_x_delta:
-			$AnimatedSprite2D.play("side_walk")
+#		var axis_x_delta = abs(direction.x - global_position.x) > 200
+#		if direction.y < global_position.y and not axis_x_delta:
+#			$AnimatedSprite2D.play("back_walk")
+#		if direction.y > global_position.y and not axis_x_delta:
+#			$AnimatedSprite2D.play("front_walk")
+#		if axis_x_delta:
+#			$AnimatedSprite2D.play("side_walk")
+		handleMovementAnimations()
 		moving = true
 		
 	$AnimatedSprite2D.flip_h = (global_position.x - direction.x) > 0
 	
 	if moving:
 		move_and_slide()
+		
+	if moving_to_object and not next_to_object:
+		direction = obj_position
+		velocity = global_position.direction_to(direction) * speed
+		handleMovementAnimations()
+		move_and_slide()
+		print("RESTA:")
+		print(abs(position - direction))
+		if abs(position - direction) < Vector2(50.0, 50.0) and moving_to_object:
+			print("ENTRO")
+			$AnimatedSprite2D.stop()
+			moving_to_object = false
+			next_to_object = true
+			actionHandler()
 	
 	if global_position == old_position and moving:
-		$AnimatedSprite2D.stop()
-		moving = false
-		animIdle()
+		handleStopAnimation()
 	
 	if abs(global_position - direction) < Vector2(5.0, 5.0) and moving:
-		$AnimatedSprite2D.stop()
-		moving = false		
-		animIdle()
+		handleStopAnimation()
 		
 	
 	
@@ -98,43 +112,73 @@ func actionHandler():
 	
 	print("ACTION HANDLER")
 	var obj = Globals.interactive_obj
-	print("OBJECT: ", obj)
+	obj_position = obj.position
+	print("OBJECT: ", obj.position, " ", position, " ", global_position)
 	var text = ""
-	if obj:
-		if action_type == "look":
-			if obj.has_method("look"):
-				text = obj.look()
-			else:
-				text = "Nada para ver."
-		if action_type == "talk":
-			if obj.has_method("talk"):
-				text = obj.talk()
-			else:
-				text = "No puedo hablar con eso."
-		if action_type == "pick":
-			if obj.has_method("pick"):
-				text = obj.pick(inventory)
-			else:
-				text = "No puedo cojer eso."
-		if action_type == "use":
-			if obj.has_method("use"):
-				text = obj.use()
-			else:
-				text = "No puedo usar eso."
-		$"../CanvasLayer/Label".text = text	
-		#$Label.text = text
-		Globals.interactive_obj = null
-		await get_tree().create_timer(2.5).timeout
-		#$Label.text = ""
+	
+	if abs(global_position - obj.position  ) > Vector2(10.0,10.0) and not next_to_object:
+		moving_to_object = true
+		next_to_object = false
+		print("obj pos: ", obj_position)
+	#TODO: hacer los objetos reacheables
+	#cambiado por checkRelativePositions de ambos ejes
+	#abs(position - obj_position) < Vector2(10.0, 10.0) or
+	#checkRelativePositions:
+	#abs(obj_position.x - position.x) <= 30.0 or abs(obj_position.y - position.y) <= 30.0
+	if  checkRelativePosition(obj_position.x) or checkRelativePosition(obj_position.y):
+		next_to_object = true
+	if not moving_to_object and next_to_object:
+		next_to_object = false
+		if obj:
+			if action_type == "look":
+				if obj.has_method("look"):
+					text = obj.look()
+				else:
+					text = "Nada para ver."
+			if action_type == "talk":
+				if obj.has_method("talk"):
+					text = obj.talk()
+				else:
+					text = "No puedo hablar con eso."
+			if action_type == "pick":
+				if obj.has_method("pick"):
+					text = obj.pick(inventory)
+				else:
+					text = "No puedo cojer eso."
+			if action_type == "use":
+				if obj.has_method("use"):
+					text = obj.use()
+				else:
+					text = "No puedo usar eso."
+			$"../CanvasLayer/Label".text = text	
+			#$Label.text = text
+			Globals.interactive_obj = null
+			await get_tree().create_timer(2.5).timeout
+			#$Label.text = ""
 
-		$"../CanvasLayer/Label".text = ""
+			$"../CanvasLayer/Label".text = ""
 
 	
 func animIdle():
 	$AnimatedSprite2D.speed_scale = anim_idle_speed
 	$AnimatedSprite2D.play("idle")
 
+func handleMovementAnimations():
+	var axis_x_delta = abs(direction.x - global_position.x) > 200
+	if direction.y < global_position.y and not axis_x_delta:
+		$AnimatedSprite2D.play("back_walk")
+	if direction.y > global_position.y and not axis_x_delta:
+		$AnimatedSprite2D.play("front_walk")
+	if axis_x_delta:
+		$AnimatedSprite2D.play("side_walk")
 
+func handleStopAnimation():
+	$AnimatedSprite2D.stop()
+	moving = false
+	animIdle()
+	
+func checkRelativePosition(obj_pos_axis):
+	return abs(obj_pos_axis - position.x) <= 30.0 or abs(obj_pos_axis - position.y) <= 30.0
 
 func _on_world_clicked_and_close_action_menu(type):
 	action_type = type
