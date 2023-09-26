@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bd07ym7t8rpdu"]
+
+[ext_resource type="Script" path="res://Objects/example_item.gd" id="1_ahqh1"]
+[ext_resource type="Resource" uid="uid://cq4be6fch3c07" path="res://Inventory/InventoryItems/ExampleItem.tres" id="2_s2ed6"]
+
+[node name="ExampleItem" type="Node2D"]
+script = ExtResource("1_ahqh1")
+itemRes = ExtResource("2_s2ed6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="TextureButton" type="TextureButton" parent="."]
+action_mode = 0
+button_mask = 2
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]

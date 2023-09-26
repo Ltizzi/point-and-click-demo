@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://csj6ewh8j4tb4"]
+
+[ext_resource type="Script" path="res://Inventory/inventory_slot.gd" id="1_0g0ro"]
+[ext_resource type="Texture2D" uid="uid://c5hvda21preh4" path="res://assets/images/UI/inventory_slot.png" id="1_ebn2p"]
+
+[node name="InventorySlot" type="CenterContainer"]
+script = ExtResource("1_0g0ro")
+
+[node name="asda" type="TextureRect" parent="."]
+visible = false
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("1_ebn2p")
+
+[node name="Background" type="Sprite2D" parent="."]
+modulate = Color(0.501961, 0.298039, 0.156863, 1)
+texture = ExtResource("1_ebn2p")
+
+[node name="ItemSprite" type="Sprite2D" parent="."]
+texture_filter = 1

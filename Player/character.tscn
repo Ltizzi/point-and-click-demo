@@ -1,6 +1,7 @@
-[gd_scene load_steps=107 format=3 uid="uid://df0bgi3t6ulq7"]
+[gd_scene load_steps=108 format=3 uid="uid://df0bgi3t6ulq7"]
 
 [ext_resource type="Script" path="res://Player/Character.gd" id="1_qjh56"]
+[ext_resource type="Resource" uid="uid://bjsyaecyfeq2n" path="res://Inventory/player_inventory.tres" id="2_nu8f7"]
 [ext_resource type="Script" path="res://Player/Luces.gd" id="2_yche7"]
 [ext_resource type="Texture2D" uid="uid://ioixrcsgd0ee" path="res://assets/images/lights/circle.png" id="3_1do85"]
 [ext_resource type="Texture2D" uid="uid://bdjhnx0nqjg33" path="res://assets/images/char/walk/behind/spr_playerBack_0.png" id="4_wkvwg"]
@@ -441,10 +442,11 @@ collision_mask = 14
 motion_mode = 1
 platform_wall_layers = 8
 script = ExtResource("1_qjh56")
+inventory = ExtResource("2_nu8f7")
 anim_idle_speed = 0.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-2.5, 154)
+position = Vector2(-0.0759277, -0.848267)
 shape = SubResource("RectangleShape2D_y172v")
 
 [node name="Label" type="Label" parent="."]
@@ -452,10 +454,10 @@ visibility_layer = 512
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -181.818
-offset_top = -208.485
-offset_right = -180.818
-offset_bottom = -174.485
+offset_left = -179.394
+offset_top = -363.333
+offset_right = -178.394
+offset_bottom = -329.333
 grow_horizontal = 2
 grow_vertical = 2
 label_settings = SubResource("LabelSettings_o08ot")
@@ -464,6 +466,7 @@ autowrap_mode = 2
 
 [node name="Luces" type="Node2D" parent="."]
 z_index = 2
+position = Vector2(2.42407, -154.848)
 script = ExtResource("2_yche7")
 self_light_intensity = 1.195
 light_texture_radius = 0.135
@@ -501,15 +504,17 @@ texture_scale = 0.31
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 light_mask = 7
 z_index = 1
+position = Vector2(2.42407, -154.848)
 occluder = SubResource("OccluderPolygon2D_k1sl5")
 occluder_light_mask = 7
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 light_mask = 3
 texture_filter = 1
+position = Vector2(2.42407, -154.848)
 sprite_frames = SubResource("SpriteFrames_kv7ft")
 animation = &"idle"
 autoplay = "idle"
 
 [node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(-1.2121, -218.182)
+position = Vector2(-109.091, -400)

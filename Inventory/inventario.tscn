@@ -1,14 +1,14 @@
 [gd_scene load_steps=5 format=3 uid="uid://da8fx6gkc4e8c"]
 
-[ext_resource type="Script" path="res://Inventory/inventario.gd" id="1_s6dnc"]
+[ext_resource type="Script" path="res://Inventory/inventario_gui.gd" id="1_cgxyq"]
 [ext_resource type="Texture2D" uid="uid://bixuwnq4d1bjn" path="res://assets/images/textures/OldLeather_N.jpg" id="2_h48k7"]
-[ext_resource type="PackedScene" uid="uid://emg4welpr7lp" path="res://scenes/UI/item.tscn" id="3_ji66g"]
+[ext_resource type="PackedScene" uid="uid://csj6ewh8j4tb4" path="res://Inventory/inventory_slot.tscn" id="3_oq0us"]
 [ext_resource type="Texture2D" uid="uid://w7pkrliaacob" path="res://assets/images/UI/ui_close_btn.png" id="4_qykhs"]
 
 [node name="Inventario" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-script = ExtResource("1_s6dnc")
+script = ExtResource("1_cgxyq")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 modulate = Color(0.501961, 0.298039, 0.156863, 1)
@@ -16,86 +16,87 @@ custom_minimum_size = Vector2(85, 65)
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+scale = Vector2(1.14237, 1.24421)
 texture = ExtResource("2_h48k7")
 expand_mode = 1
 
 [node name="GridContainer" type="GridContainer" parent="."]
 layout_mode = 0
-offset_left = 4.0
-offset_top = 4.0
-offset_right = 64.0
-offset_bottom = 49.0
-theme_override_constants/h_separation = 15
-theme_override_constants/v_separation = 15
+offset_left = 12.0
+offset_top = 13.0
+offset_right = 100.0
+offset_bottom = 86.0
+theme_override_constants/h_separation = 18
+theme_override_constants/v_separation = 18
 columns = 5
 
-[node name="Item" parent="GridContainer" instance=ExtResource("3_ji66g")]
+[node name="InventorySlot" parent="GridContainer" instance=ExtResource("3_oq0us")]
 layout_mode = 2
 
-[node name="Item2" parent="GridContainer" instance=ExtResource("3_ji66g")]
+[node name="InventorySlot2" parent="GridContainer" instance=ExtResource("3_oq0us")]
 layout_mode = 2
 
-[node name="Item3" parent="GridContainer" instance=ExtResource("3_ji66g")]
+[node name="InventorySlot3" parent="GridContainer" instance=ExtResource("3_oq0us")]
 layout_mode = 2
 
-[node name="Item4" parent="GridContainer" instance=ExtResource("3_ji66g")]
+[node name="InventorySlot4" parent="GridContainer" instance=ExtResource("3_oq0us")]
 layout_mode = 2
 
-[node name="Item5" parent="GridContainer" instance=ExtResource("3_ji66g")]
+[node name="InventorySlot5" parent="GridContainer" instance=ExtResource("3_oq0us")]
 layout_mode = 2
 
-[node name="Item6" parent="GridContainer" instance=ExtResource("3_ji66g")]
+[node name="InventorySlot6" parent="GridContainer" instance=ExtResource("3_oq0us")]
 layout_mode = 2
 
-[node name="Item7" parent="GridContainer" instance=ExtResource("3_ji66g")]
+[node name="InventorySlot7" parent="GridContainer" instance=ExtResource("3_oq0us")]
 layout_mode = 2
 
-[node name="Item8" parent="GridContainer" instance=ExtResource("3_ji66g")]
+[node name="InventorySlot8" parent="GridContainer" instance=ExtResource("3_oq0us")]
 layout_mode = 2
 
-[node name="Item9" parent="GridContainer" instance=ExtResource("3_ji66g")]
+[node name="InventorySlot9" parent="GridContainer" instance=ExtResource("3_oq0us")]
 layout_mode = 2
 
-[node name="Item10" parent="GridContainer" instance=ExtResource("3_ji66g")]
+[node name="InventorySlot10" parent="GridContainer" instance=ExtResource("3_oq0us")]
 layout_mode = 2
 
-[node name="Item11" parent="GridContainer" instance=ExtResource("3_ji66g")]
+[node name="InventorySlot11" parent="GridContainer" instance=ExtResource("3_oq0us")]
 layout_mode = 2
 
-[node name="Item12" parent="GridContainer" instance=ExtResource("3_ji66g")]
+[node name="InventorySlot12" parent="GridContainer" instance=ExtResource("3_oq0us")]
 layout_mode = 2
 
-[node name="Item13" parent="GridContainer" instance=ExtResource("3_ji66g")]
+[node name="InventorySlot13" parent="GridContainer" instance=ExtResource("3_oq0us")]
 layout_mode = 2
 
-[node name="Item14" parent="GridContainer" instance=ExtResource("3_ji66g")]
+[node name="InventorySlot14" parent="GridContainer" instance=ExtResource("3_oq0us")]
 layout_mode = 2
 
-[node name="Item15" parent="GridContainer" instance=ExtResource("3_ji66g")]
+[node name="InventorySlot15" parent="GridContainer" instance=ExtResource("3_oq0us")]
 layout_mode = 2
 
-[node name="Item16" parent="GridContainer" instance=ExtResource("3_ji66g")]
+[node name="InventorySlot16" parent="GridContainer" instance=ExtResource("3_oq0us")]
 layout_mode = 2
 
-[node name="Item17" parent="GridContainer" instance=ExtResource("3_ji66g")]
+[node name="InventorySlot17" parent="GridContainer" instance=ExtResource("3_oq0us")]
 layout_mode = 2
 
-[node name="Item18" parent="GridContainer" instance=ExtResource("3_ji66g")]
+[node name="InventorySlot18" parent="GridContainer" instance=ExtResource("3_oq0us")]
 layout_mode = 2
 
-[node name="Item19" parent="GridContainer" instance=ExtResource("3_ji66g")]
+[node name="InventorySlot19" parent="GridContainer" instance=ExtResource("3_oq0us")]
 layout_mode = 2
 
-[node name="Item20" parent="GridContainer" instance=ExtResource("3_ji66g")]
+[node name="InventorySlot20" parent="GridContainer" instance=ExtResource("3_oq0us")]
 layout_mode = 2
 
 [node name="TextureButton" type="TextureButton" parent="."]
 texture_filter = 1
 layout_mode = 0
-offset_left = 79.0
-offset_right = 95.0
+offset_left = 93.0
+offset_right = 109.0
 offset_bottom = 16.0
-scale = Vector2(0.365, 0.365)
+scale = Vector2(0.269, 0.258)
 texture_normal = ExtResource("4_qykhs")
 
 [connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]

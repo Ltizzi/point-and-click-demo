@@ -74,7 +74,7 @@ func use():
 		return "Bueno, estaba un poco fuerte..."
 
 
-func pick():
+func pick(item):
 	return getActionStrings["pick"]
 
 

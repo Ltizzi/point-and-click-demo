@@ -3,18 +3,17 @@ extends CharacterBody2D
 var direction:Vector2
 var speed = 300
 
-var click_count: int
-
-var moving: bool
+@export var inventory: Inventory
 
 var old_position: Vector2
+var moving: bool
+
+var click_count: int
 
 signal popup_menu
 signal popup_menu_close
 
 @export var anim_idle_speed: float
-
-
 
 var action_type: String
 
@@ -28,22 +27,23 @@ func _process(_delta):
 	
 	#Actualiza posicion de texto
 	#	$".."/CanvasLayer/Label.position = Vector2($Marker2D.global_position.x - 100, $Marker2D.global_position.y )	
-	$".."/CanvasLayer/Label.position = $Marker2D.global_position
+	$".."/CanvasLayer/Label.global_position = $Marker2D.global_position
 
 	var mouse_clicked = Input.is_action_just_released("left-click")
 	var right_click = Input.is_action_just_pressed("right-click")
 	
-	if mouse_clicked or right_click:
-		click_count += 1
-		print("=====================================")
-		print("Click counter: ", click_count)
-		print("=====================================")
-		print(" ")
-		print("pop up open: ", Globals.action_menu_open)
-		print("clicked with action open: ", Globals.clicked_with_action_menu_open)
-		print("mouse over gui: ", Globals.mouse_over_gui)
-		print(" ")
-		print("=====================================")
+	#CLICKER DEBUG INFO
+#	if mouse_clicked or right_click:
+#		click_count += 1
+#		print("=====================================")
+#		print("Click counter: ", click_count)
+#		print("=====================================")
+#		print(" ")
+#		print("pop up open: ", Globals.action_menu_open)
+#		print("clicked with action open: ", Globals.clicked_with_action_menu_open)
+#		print("mouse over gui: ", Globals.mouse_over_gui)
+#		print(" ")
+#		print("=====================================")
 
 	
 	if right_click and Globals.interactive_obj:
@@ -61,6 +61,7 @@ func _process(_delta):
 	if mouse_clicked and not Globals.mouse_over_gui and not Globals.clicked_with_action_menu_open:
 		if Globals.action_menu_open:
 			Globals.action_menu_open = false
+			Globals.interactive_obj = null
 			popup_menu_close.emit()
 			
 		$AnimatedSprite2D.stop()
@@ -112,7 +113,7 @@ func actionHandler():
 				text = "No puedo hablar con eso."
 		if action_type == "pick":
 			if obj.has_method("pick"):
-				text = obj.pick()
+				text = obj.pick(inventory)
 			else:
 				text = "No puedo cojer eso."
 		if action_type == "use":
@@ -122,10 +123,12 @@ func actionHandler():
 				text = "No puedo usar eso."
 		$"../CanvasLayer/Label".text = text	
 		#$Label.text = text
+		Globals.interactive_obj = null
 		await get_tree().create_timer(2.5).timeout
 		#$Label.text = ""
+
 		$"../CanvasLayer/Label".text = ""
-		Globals.interactive_obj = null
+
 	
 func animIdle():
 	$AnimatedSprite2D.speed_scale = anim_idle_speed

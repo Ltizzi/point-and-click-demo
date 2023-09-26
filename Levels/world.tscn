@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://bxhlvffeydnmr"]
+[gd_scene load_steps=13 format=3 uid="uid://bxhlvffeydnmr"]
 
 [ext_resource type="Script" path="res://Levels/world.gd" id="1_5tsyp"]
 [ext_resource type="Texture2D" uid="uid://jeb4vm5ln02q" path="res://assets/images/bg/bg_iintro.png" id="2_qwdwf"]
 [ext_resource type="PackedScene" uid="uid://t628ctc88cvo" path="res://Objects/old_clock.tscn" id="3_hph14"]
 [ext_resource type="PackedScene" uid="uid://b4l7ncn65dutk" path="res://Objects/monitor_screen.tscn" id="4_la20h"]
+[ext_resource type="PackedScene" uid="uid://bd07ym7t8rpdu" path="res://Objects/example_item.tscn" id="5_m2ui4"]
 [ext_resource type="PackedScene" uid="uid://df0bgi3t6ulq7" path="res://Player/character.tscn" id="5_qn3fy"]
 [ext_resource type="PackedScene" uid="uid://b44162keicw8x" path="res://UI/action_menu.tscn" id="6_mx2he"]
 [ext_resource type="PackedScene" uid="uid://da8fx6gkc4e8c" path="res://Inventory/inventario.tscn" id="7_rhhdq"]
@@ -81,6 +82,10 @@ position = Vector2(49, 208)
 position = Vector2(448, 187)
 scale = Vector2(0.295898, 0.274654)
 
+[node name="ExampleItem" parent="Level" instance=ExtResource("5_m2ui4")]
+position = Vector2(554, 234)
+scale = Vector2(1.54, 1.54)
+
 [node name="Character" parent="." instance=ExtResource("5_qn3fy")]
 light_mask = 1
 position = Vector2(442, 346)
@@ -98,15 +103,30 @@ offset_right = -600.0
 offset_bottom = -560.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(100, 16)
 label_settings = SubResource("LabelSettings_g1ubl")
+horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
+metadata/_edit_use_anchors_ = true
 
 [node name="Inventario" parent="CanvasLayer" instance=ExtResource("7_rhhdq")]
-offset_left = 51.0
-offset_top = 25.0
-offset_right = 51.0
-offset_bottom = 25.0
-scale = Vector2(8.3, 8.3)
+visible = false
+anchors_preset = -1
+anchor_left = 0.062
+anchor_top = 0.02
+anchor_right = 0.91
+anchor_bottom = 0.964
+offset_left = 23.4
+offset_top = -4.0
+offset_right = -558.0
+offset_bottom = -489.4
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(6.99, 6.99)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+metadata/_edit_use_anchors_ = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(401, 299)
